@@ -111,7 +111,7 @@ var initRecourd = function() {
 
 // 自动调节屏幕大小
 function autoSize() {
-
+	
 }
 
 function drawBackground() {
@@ -132,6 +132,9 @@ function bading() {
 		context.drawImage(background, 0, 0, 450, 450);
 		initRecourd();
 		drawBackground();
+		over = false;
+		count = 0;
+		stepCount = 0;
 	});
 	$('#stepBack').click(function() {
 		reSetStep();
