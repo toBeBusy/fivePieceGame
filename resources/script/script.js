@@ -26,6 +26,17 @@ var recentCount = [];
 // 记录已经走过的步数
 var stepCount = 0;
 
+// 设置背景图片
+var background = new Image();
+background.src = "resources/img/background.jpg";
+background.onload = function() {
+	context.drawImage(background, 0, 0, 450, 450);
+	initRecourd();
+	drawBackground();
+	bading();
+	autoSize();
+}
+
 // 初始化各种数组
 // 初始化记录棋子的数组和记录所下位置的棋子
 var initRecourd = function() {
@@ -35,6 +46,7 @@ var initRecourd = function() {
 			recourd[i][j] = 0;
 		}
 	}
+
 	for ( var i = 0; i < 225; i++) {
 		recentCount[i] = [];
 		for ( var j = 0; j < 2; j++) {
@@ -55,63 +67,51 @@ var initRecourd = function() {
 			winCount[i][j] = [];
 		}
 	}
-}
 
-// 横向的赢法
-for ( var i = 0; i < 15; i++) {
-	for ( var j = 0; j < 11; j++) {
-		for ( var k = 0; k < 5; k++) {
-			winCount[i][j + k][count] = true;
+	// 横向的赢法
+	for ( var i = 0; i < 15; i++) {
+		for ( var j = 0; j < 11; j++) {
+			for ( var k = 0; k < 5; k++) {
+				winCount[i][j + k][count] = true;
+			}
+			count++;
 		}
-		count++;
+	}
+
+	// 纵向的赢法
+	for ( var i = 0; i < 15; i++) {
+		for ( var j = 0; j < 11; j++) {
+			for ( var k = 0; k < 5; k++) {
+				winCount[j + k][i][count] = true;
+			}
+			count++;
+		}
+	}
+
+	// 斜向的赢法
+	for ( var i = 0; i < 11; i++) {
+		for ( var j = 0; j < 11; j++) {
+			for ( var k = 0; k < 5; k++) {
+				winCount[i + k][j + k][count] = true;
+			}
+			count++;
+		}
+	}
+
+	// 反斜向的赢法
+	for ( var i = 4; i < 15; i++) {
+		for ( var j = 0; j < 11; j++) {
+			for ( var k = 0; k < 5; k++) {
+				winCount[i - k][j + k][count] = true;
+			}
+			count++;
+		}
 	}
 }
 
-// 纵向的赢法
-for ( var i = 0; i < 15; i++) {
-	for ( var j = 0; j < 11; j++) {
-		for ( var k = 0; k < 5; k++) {
-			winCount[j + k][i][count] = true;
-		}
-		count++;
-	}
-}
+// 自动调节屏幕大小
+function autoSize() {
 
-// 斜向的赢法
-for ( var i = 0; i < 11; i++) {
-	for ( var j = 0; j < 11; j++) {
-		for ( var k = 0; k < 5; k++) {
-			winCount[i + k][j + k][count] = true;
-		}
-		count++;
-	}
-}
-
-// 反斜向的赢法
-for ( var i = 4; i < 15; i++) {
-	for ( var j = 0; j < 11; j++) {
-		for ( var k = 0; k < 5; k++) {
-			winCount[i - k][j + k][count] = true;
-		}
-		count++;
-	}
-}
-
-// 设置背景图片
-var background = new Image();
-background.src = "resources/img/background.jpg";
-background.onload = function() {
-	context.drawImage(background, 0, 0, 450, 450);
-	initRecourd();
-	drawBackground();
-	bading();
-	autoSize();
-}
-
-//自动调节屏幕大小
-function autoSize(){
-	alert($(window).height());
-	alert($(window).width());
 }
 
 function drawBackground() {
