@@ -129,12 +129,12 @@ function drawBackground() {
 // 各种按钮的事件绑定
 function bading() {
 	$('#againBtn').click(function() {
-		context.drawImage(background, 0, 0, 450, 450);
-		initRecourd();
-		drawBackground();
 		over = false;
 		count = 0;
 		stepCount = 0;
+		context.drawImage(background, 0, 0, 450, 450);
+		initRecourd();
+		drawBackground();
 	});
 	$('#stepBack').click(function() {
 		reSetStep();
