@@ -41,19 +41,19 @@ var initRecourd = function() {
 			recentCount[i][j] = -1;
 		}
 	}
-}
 
-// 初始化赢法统计数组
-for ( var i = 0; i < 572; i++) {
-	myWin[i] = 0;
-	computerWin[i] = 0;
-}
+	// 初始化赢法统计数组
+	for ( var i = 0; i < 572; i++) {
+		myWin[i] = 0;
+		computerWin[i] = 0;
+	}
 
-// 初始化记录赢法的数组
-for ( var i = 0; i < 15; i++) {
-	winCount[i] = [];
-	for ( var j = 0; j < 15; j++) {
-		winCount[i][j] = [];
+	// 初始化记录赢法的数组
+	for ( var i = 0; i < 15; i++) {
+		winCount[i] = [];
+		for ( var j = 0; j < 15; j++) {
+			winCount[i][j] = [];
+		}
 	}
 }
 
@@ -124,13 +124,14 @@ function drawBackground() {
 		context.lineTo(435, 15 + 30 * i);
 		context.stroke();
 	}
-	;
 }
 
 // 各种按钮的事件绑定
 function bading() {
 	$('#againBtn').click(function() {
-		window.location.reload();
+		context.drawImage(background, 0, 0, 450, 450);
+		initRecourd();
+		drawBackground();
 	});
 	$('#stepBack').click(function() {
 		reSetStep();
